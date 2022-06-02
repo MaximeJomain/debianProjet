@@ -9,7 +9,7 @@
         <h1>Bases de données</h1>  
         <?php
             $servername = '10.57.29.58';
-            $username = 'root';
+            $username = 'user';
             $password = 'root';
             $port = '3306';
             //On essaie de se connecter
