@@ -1,29 +1,40 @@
+<!DOCTYPE html>
 <html>
-    <h1>Hello World</h1>
-    <p>User list:</p>
+    <head>
+        <title>DB</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="cours.css">
+    </head>
+    <body>
+        <h1>Bases de données</h1>  
+        <?php
+            $servername = '10.57.29.58';
+            $username = 'root';
+            $password = 'root';
+            $port = '3306';
+            //On essaie de se connecter
+            try{
+                $conn = new PDO("mysql:host=$servername;dbname=git_dyson_db; port=$port", $username, $password);
+                //On définit le mode d'erreur de PDO sur Exception
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                echo 'Connexion terminée avec succes';
+
+                $sql = 'SELECT id, name, email FROM users';
+
+                foreach  ($conn->query($sql) as $row) {
+                    print $row['id'] . "\t";
+                    print $row['name'] . "\t";
+                    print $row['email'] . "\n";
+                }
+                
+            }
+            
+            /*On capture les exceptions si une exception est lancée et on affiche
+             *les informations relatives à celle-ci*/
+            catch(PDOException $e){
+              echo "Erreur : " . $e->getMessage();
+            };
+
+        ?>
+    </body>
 </html>
-
-<?php
-// Database settings
-$db="git_dyson_db";
-$dbhost="10.57.29.58";
-$dbport=3306;
-$dbuser="user";
-$dbpasswd="root";
-try {
-    $pdo = new PDO('mysql:host='.$dbhost.';port='.$dbport.';dbname='.$db.'', $dbuser, $dbpasswd);
-    $req = 'SELECT id, name, email FROM users';
-
-    foreach ($pdo -> query($req) as $row) {
-        print $row['id'] . "\t";
-        print $row['name'] . "\t";
-        print $row['email'] . "\n";
-    }
-
-}
-catch {
-
-}    
-    $pdo = null;
- 
-?>
