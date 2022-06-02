@@ -8,7 +8,7 @@
 $db="git_dyson_db";
 $dbhost="10.57.29.58";
 $dbport=3306;
-$dbuser="root";
+$dbuser="user";
 $dbpasswd="root";
 try {
     $pdo = new PDO('mysql:host='.$dbhost.';port='.$dbport.';dbname='.$db.'', $dbuser, $dbpasswd);
