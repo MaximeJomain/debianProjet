@@ -9,17 +9,17 @@
         <h1>Bases de données</h1>  
         <?php
             $servername = '10.57.29.58';
-            $username = 'root';
-            $password = 'root';
+            $username = 'user2';
+            $password = 'password2';
             $port = '3306';
             //On essaie de se connecter
             try{
-                $conn = new PDO("mysql:host=$servername;dbname=git_dyson_db; port=$port", $username, $password);
+                $conn = new PDO("mysql:host=$servername;dbname=base; port=$port", $username, $password);
                 //On définit le mode d'erreur de PDO sur Exception
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 echo 'Connexion terminée avec succes';
 
-                $sql = 'SELECT id, name, email FROM users';
+                $sql = 'SELECT id, name, email FROM authors';
 
                 foreach  ($conn->query($sql) as $row) {
                     print $row['id'] . "\t";
